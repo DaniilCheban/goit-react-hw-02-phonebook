@@ -15,10 +15,22 @@ export default class ContactForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { name, number } = this.state;
-    const { onAddContact } = this.props;
+    const { contacts, onAddContact } = this.props;
 
     if (name.trim() === '' || number.trim() === '') {
       alert('Please enter both name and number');
+      return;
+    }
+
+    const isDuplicateName = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+    const isDuplicateNumber = contacts.some(
+      contact => contact.number === number
+    );
+
+    if (isDuplicateName || isDuplicateNumber) {
+      alert('Contact with the same name or number already exists');
       return;
     }
 
