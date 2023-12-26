@@ -1,15 +1,21 @@
-import React from 'react';
-
-const ContactList = ({ contacts, onDeleteContact }) => (
-  <ul>
-    {contacts.map(contact => (
-      <li key={contact.id}>
-        {contact.name}: {contact.number}
-        <button type="button" onClick={() => onDeleteContact(contact.id)}>
-          Delete
-        </button>
-      </li>
-    ))}
-  </ul>
-);
-export default ContactList;
+export const ContactsList = ({ array, handleDeleteContact }) => {
+  return (
+    <ul className="list-group ">
+      {array.map(({ id, name, number }) => (
+        <li className="list-group-item d-flex" key={id}>
+          <div className="p-2">
+            {name}: {number}
+          </div>
+          <button
+            id={id}
+            onClick={e => handleDeleteContact(e)}
+            type="button"
+            className="btn btn-danger ms-auto"
+          >
+            Delete
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+};

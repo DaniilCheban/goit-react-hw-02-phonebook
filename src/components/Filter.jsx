@@ -1,10 +1,17 @@
-import React from 'react';
-
-const Filter = ({ filter, onChange }) => (
-  <label>
-    Filter contacts by name:
-    <input type="text" name="filter" value={filter} onChange={onChange} />
-  </label>
-);
-
-export default Filter;
+export const Filter = ({ state, handleChange }) => {
+  return (
+    <div className="mb-3">
+      <label htmlFor="name" className="form-label">
+        Find contact by name
+      </label>
+      <input
+        type="text"
+        className="form-control"
+        name="filter"
+        onChange={e => handleChange(e)}
+        value={state.filter}
+        required
+      />
+    </div>
+  );
+};
